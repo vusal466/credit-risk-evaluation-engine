@@ -1,0 +1,50 @@
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1420)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [com.example.loanriskevaluationsystem.riskevaluation.dto.response.RiskEvaluationResponse] to [java.lang.String] for GenericMessage [payload=RiskEvaluationResponse(id=1, riskScore=30, riskLevel=MEDIUM, decision=APPROVE, debtToIncomeRatio=2.00, maxApprovedAmount=8000.00, suggestedInterestRate=0.1700, rejectionReasons=null, evaluatedAt=2026-03-28T15:18:12.671769594, evaluatedBy=SYSTEM, loanApplicationId=1, customerId=123456, requestedAmount=10000.00), headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedRoutingKey=risk.result, amqp_receivedExchange=risk.exchange, amqp_deliveryTag=1, amqp_consumerQueue=risk.result.queue, amqp_redelivered=true, id=16678055-9c35-dc6b-9c6e-757d0a2ee162, amqp_consumerTag=amq.ctag-5DLsdqAtUJHtc979oaoHvA, amqp_lastInBatch=false, contentType=application/x-java-serialized-object, timestamp=1774711176477}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151)
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99)
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278)
+	... 15 common frames omitted
+2026-03-28 15:19:36 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] WARN  o.s.a.r.l.ConditionalRejectingErrorHandler$DefaultExceptionStrategy - Fatal message conversion error; message rejected; it will be dropped or routed to a dead letter exchange, if so configured: (Body:'[serialized object]' MessageProperties [headers={}, contentType=application/x-java-serialized-object, contentLength=0, receivedDeliveryMode=PERSISTENT, priority=0, redelivered=true, receivedExchange=risk.exchange, receivedRoutingKey=risk.result, deliveryTag=1, consumerTag=amq.ctag-5DLsdqAtUJHtc979oaoHvA, consumerQueue=risk.result.queue])
+2026-03-28 15:19:36 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] ERROR o.s.a.r.l.SimpleMessageListenerContainer - Execution of Rabbit message listener failed, and the error handler threw an exception
+org.springframework.amqp.AmqpRejectAndDontRequeueException: Error Handler converted exception to fatal
+	at org.springframework.amqp.rabbit.listener.ConditionalRejectingErrorHandler.handleError(ConditionalRejectingErrorHandler.java:147)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeErrorHandler(AbstractMessageListenerContainer.java:1475)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.handleListenerException(AbstractMessageListenerContainer.java:1768)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1549)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.lambda$executeListener$8(AbstractMessageListenerContainer.java:1506)
+	at io.micrometer.observation.Observation.observe(Observation.java:499)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1506)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:1082)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:1018)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1420)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1322)
+	at java.base/java.lang.Thread.run(Unknown Source)
+Caused by: org.springframework.amqp.rabbit.support.ListenerExecutionFailedException: Listener method could not be invoked with the incoming message
+Endpoint handler details:
+Method [public void com.example.loanriskevaluationsystem.shared.messaging.RiskEvaluationResultListener.handle(java.lang.String)]
+Bean [com.example.loanriskevaluationsystem.shared.messaging.RiskEvaluationResultListener@623e578b]
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:282)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:225)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:149)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1682)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1604)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1592)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1583)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListenerAndHandleException(AbstractMessageListenerContainer.java:1528)
+	... 8 common frames omitted
+Caused by: org.springframework.messaging.converter.MessageConversionException: Cannot convert from [com.example.loanriskevaluationsystem.riskevaluation.dto.response.RiskEvaluationResponse] to [java.lang.String] for GenericMessage [payload=RiskEvaluationResponse(id=1, riskScore=30, riskLevel=MEDIUM, decision=APPROVE, debtToIncomeRatio=2.00, maxApprovedAmount=8000.00, suggestedInterestRate=0.1700, rejectionReasons=null, evaluatedAt=2026-03-28T15:18:12.671769594, evaluatedBy=SYSTEM, loanApplicationId=1, customerId=123456, requestedAmount=10000.00), headers={amqp_receivedDeliveryMode=PERSISTENT, amqp_receivedRoutingKey=risk.result, amqp_receivedExchange=risk.exchange, amqp_deliveryTag=1, amqp_consumerQueue=risk.result.queue, amqp_redelivered=true, id=16678055-9c35-dc6b-9c6e-757d0a2ee162, amqp_consumerTag=amq.ctag-5DLsdqAtUJHtc979oaoHvA, amqp_lastInBatch=false, contentType=application/x-java-serialized-object, timestamp=1774711176477}]
+	at org.springframework.messaging.handler.annotation.support.PayloadMethodArgumentResolver.resolveArgument(PayloadMethodArgumentResolver.java:151)
+	at org.springframework.amqp.rabbit.listener.adapter.AmqpMessageHandlerMethodFactory$OptionalEmptyAwarePayloadArgumentResolver.resolveArgument(AmqpMessageHandlerMethodFactory.java:99)
+	at org.springframework.messaging.handler.invocation.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:118)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:147)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:115)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:75)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:278)
+	... 15 common frames omitted
+2026-03-28 15:19:36 [org.springframework.amqp.rabbit.RabbitListenerEndpointContainer#1-1] DEBUG o.s.a.r.l.BlockingQueueConsumer - Rejecting messages (requeue=false)
