@@ -173,5 +173,5 @@ src/
 
 ## Author
 
-**Vusal Cafarli** — Java Backend Developer
+**Vusal Jafarli** — Java Backend Developer
 - GitHub: [@vusal466](https://github.com/vusal466)
