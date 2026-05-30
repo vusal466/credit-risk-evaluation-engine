@@ -175,5 +175,3 @@ src/
 
 **Vusal Cafarli** — Java Backend Developer
 - GitHub: [@vusal466](https://github.com/vusal466)
-- LinkedIn: [linkedin.com/in/vusal466](https://linkedin.com/in/vusal466)
-- Email: jafarlivoo@gmail.com
