@@ -21,3 +21,11 @@ temp/
 tmp/
 
 temp*
+
+
+*.jar
+*.log
+logs*.txt
+out.json
+response.json
+docker_logs_tmp.txt
